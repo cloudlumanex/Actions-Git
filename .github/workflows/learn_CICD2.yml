@@ -19,10 +19,14 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
-            sudo apt install httpd 
+          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }} << EOF
+            sudo apt update -y
+            sudo apt install -y httpd git 
             sudo systemctl enable httpd
             sudo systemctl restart httpd
+            mkdir -p ~/.ssh
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+            rm -rf Actions-Git
             git clone git@github.com:cloudlumanex/Actions-Git.git
             sudo cp -r /home/$(( secrets.USERNAME ))/Actions-Git/* /var/www/html
           EOF
