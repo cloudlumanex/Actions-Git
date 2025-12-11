@@ -1,10 +1,8 @@
 
 name: TestApp
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
+
 jobs:
     getgitversion:
          runs-on: ubuntu-24.04 
