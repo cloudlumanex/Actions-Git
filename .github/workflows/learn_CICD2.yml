@@ -19,7 +19,7 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }} << EOF
+          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.USER_NAME }}@${{ secrets.HOST }} << EOF
             sudo apt update -y
             sudo apt install -y httpd git 
             sudo systemctl enable httpd
