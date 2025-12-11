@@ -22,7 +22,7 @@ jobs:
          runs-on: ubuntu-24.04 
          steps:
            - name: Ping Google
-             run: ping -c 4 google.com
+             run: ping -c 4 google.com || true
              
            - name: ping Facebook
              run: ping -c 4 facebook.com
