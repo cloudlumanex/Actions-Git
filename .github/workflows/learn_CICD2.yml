@@ -1,0 +1,35 @@
+name: Deploy Dashboard
+
+on: push
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: CheckOut
+        uses: actions/checkout@v6.0.1
+
+      - name: setup SSH
+        run: |
+          echo "$(( secrets.SSH_KEY ))" > key.pem
+          chmod 600 key.pem
+
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no -i key.pem $(( secrets.USERNAME ))@$(( secrets.HOST )) << 'EOF'
+            sudo apt install httpd 
+            sudo systemctl enable httpd
+            sudo systemctl restart httpd
+            git clone git@github.com:cloudlumanex/Actions-Git.git
+            sudo cp -r /home/$(( secrets.USERNAME ))/Actions-Git/* /var/www/html
+          EOF
+
+      
+      
+          
+        
+
+       
