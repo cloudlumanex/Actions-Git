@@ -21,14 +21,14 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.USER_NAME }}@${{ secrets.HOST }} << EOF
             sudo apt update -y
-            sudo apt install -y httpd git 
-            sudo systemctl enable httpd
-            sudo systemctl restart httpd
+            sudo apt install -y apache2 git 
+            sudo systemctl enable apache2
+            sudo systemctl restart apache2
             mkdir -p ~/.ssh
             ssh-keyscan github.com >> ~/.ssh/known_hosts
             rm -rf Actions-Git
-            git clone git@github.com:cloudlumanex/Actions-Git.git
-            sudo cp -r /home/${{ secrets.USERNAME }}/Actions-Git/* /var/www/html
+            git clone https://github.com/cloudlumanex/Actions-Git.git
+            sudo cp -r /home/${{ secrets.USER_NAME }}/Actions-Git/* /var/www/html
           EOF
 
       
