@@ -27,6 +27,16 @@ jobs:
              
            - name: ping Facebook
              run: ping -c 4 facebook.com || true
+
+    OSVesrions:
+         needs: PingApps
+         runs-on: ubuntu-24.04 
+         steps:
+           - name: Os Vesrion
+             run: hostnamectl
+             
+           - name: Disk Usage
+             run: df -h
            
                
          
