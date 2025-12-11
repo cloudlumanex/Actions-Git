@@ -14,12 +14,12 @@ jobs:
 
       - name: setup SSH
         run: |
-          echo "$(( secrets.SSH_KEY ))" > key.pem
+          echo "${{ secrets.SSH_KEY }}" > key.pem
           chmod 600 key.pem
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem $(( secrets.USERNAME ))@$(( secrets.HOST )) << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
             sudo apt install httpd 
             sudo systemctl enable httpd
             sudo systemctl restart httpd
