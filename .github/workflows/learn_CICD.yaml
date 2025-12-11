@@ -10,7 +10,7 @@ jobs:
          runs-on: ubuntu-24.04 
          steps:
            - name: Maven Version
-             run: mvn version
+             run: mvn -v
              
            - name: Docker 
              run: docker --version
