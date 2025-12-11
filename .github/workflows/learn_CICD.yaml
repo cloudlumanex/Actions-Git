@@ -25,7 +25,7 @@ jobs:
              run: ping -c 4 google.com || true
              
            - name: ping Facebook
-             run: ping -c 4 facebook.com
+             run: ping -c 4 facebook.com || true
            
                
          
