@@ -1,0 +1,21 @@
+name: confirm
+
+on: workflow_dispatch
+
+jobs:
+  confirm-market:
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: download codes
+        uses: actions/checkout@v6.0.1
+
+      - name: update shell
+        run: |
+          echo " Emmanuel Ulu"
+          pwd
+          date
+          ls -al
+
+  
+  
